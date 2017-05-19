@@ -1,0 +1,182 @@
+\documentclass[12pt]{article}   % list options between brackets
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}	% Языки: русский, английский
+
+\input{packages}		% Подключаемые пакеты
+
+\usepackage{ifthen}
+
+\begin{document}
+
+
+
+
+
+
+
+
+
+\thispagestyle{empty}
+\begin{center}
+%\begin{center}\includegraphics[width=1cm]{mai.pdf}\end{center}\bigskip
+
+{\scriptsize
+МИНИСТЕРСТВО ОБРАЗОВАНИЯ И НАУКИ РОССИЙСКОЙ ФЕДЕРАЦИИ\\[.2cm]
+
+ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ ОБРАЗОВАТЕЛЬНОЕ\\[.2cm]
+
+УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ\\[.2cm]
+
+\textbf{<<МОСКОВСКИЙ АВИАЦИОННЫЙ ИНСТИТУТ}\\[.2cm]
+
+\textbf{(НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ)>> (МАИ)}\\[.2cm]
+}
+
+\vfill
+{\large
+Отчёт о выполнении практического задания\\
+по курсу\\
+\textbf{<<Метрология, Стандартизация, Сертификация>>}\\[0.4cm]
+\bfseries Оценка влияния погрешности входного сопротивления на вольтметр в сценарии ограничения напряжения между 3 и 10 В\\[2cm]}
+
+\vfill
+
+\begin{minipage}[t]{0.3\textwidth}
+	\begin{flushleft}
+    Отчёт и материалы:\\\bigskip
+	\qrcode{https://www.dropbox.com/sh/x5iftzljl6j9etv/AAAWuwOUTJjTzQEqLyZALQNMa?dl=0}%
+    \end{flushleft}
+\end{minipage}%
+\begin{minipage}[t]{0.7\textwidth}
+    \begin{flushright}
+	студент студент\\[.4cm]
+	\rule{4cm}{1pt} Пример Автора Отчёта\\
+	% \rule{4cm}{1pt} Фамилия И.О.\\
+	<<\rule{.8cm}{1pt}>> \rule{3cm}{1pt} 2017 г.\\\bigskip
+	Принимал работу:\\
+	Ст.преп. каф. 303\\[.4cm]
+	\rule{4cm}{1pt} Капырин Н.И.\\
+	<<\rule{.8cm}{1pt}>> \rule{3cm}{1pt} 2017 г.
+    \end{flushright}
+\end{minipage}
+
+\vfill
+
+{\large Москва, 2017 г.}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage
+
+\renewcommand{\baselinestretch}{1.2}
+\tableofcontents
+\renewcommand{\baselinestretch}{1.5}
+%\clearpage
+
+% =====================================================
+% Список обозначений и сокращений:
+% \section*{Список сокращений} %\printglossaries
+% \renewcommand{\baselinestretch}{1.2}
+% \addcontentsline{toc}{section}{Список сокращений}	% Добавляем его в оглавление 
+% \printglossary[type=\acronymtype] % prints just the list of acronyms
+% \renewcommand{\baselinestretch}{1.5}
+
+% =====================================================
+% некоторые общеупотребимые сокращения
+%\newglossaryentry{BD}{type=\acronymtype,name={БД},description={База данных}}
+%\newglossaryentry{LA}{type=\acronymtype,name={ЛА},description={Летательный аппарат}}
+% \newglossaryentry{GOST}{type=\acronymtype,name={ГОСТ},description={Государственный Стандарт}}
+% \clearpage
+
+
+
+\section{Задание}
+
+Оценить влияние погрешности входного сопротивления на вольтметр в сценарии ограничения напряжения между 3 и 10 В.
+
+\section{Описание задачи}
+
+Вольтметр — измерительный прибор непосредственного отсчёта для определения напряжения или ЭДС в электрических цепях. Подключается параллельно нагрузке или источнику электрической энергии. Идеальный вольтметр должен обладать бесконечно большим внутренним сопротивлением. Поэтому чем выше внутреннее сопротивление в реальном вольтметре, тем меньше влияния оказывает прибор на измеряемый объект и, следовательно, тем выше точность и разнообразнее области применения.
+
+При изготовлении вольтметра, входное сопротивление подбирается из условия соблюдения класса точности прибора. Здесь используется линейная модель погрешности изготовления, учитывающая масштабный коэффициент и смещение.
+
+При воздействии погрешности входного сопротивления на вольтметр возникает погрешности измерения, охарактеризованная исходя из математических моделей, приведённых в следующем разделе.
+
+\clearpage
+
+
+
+
+
+\section{Математические модели}
+
+\subsection{Модель вольтметра}
+
+Модель вольтметра задана следующим уравнением (зависимость индикации вольтметра U\_out от входного напряжения U\_in, масштаба шкалы k\_ind и погрешности связанной с входным сопротивлением R\_inp):
+
+\begin{equation}
+    U_{out} = \frac{U_{inp} k_{ind}}{R_{inp}}
+\end{equation}
+
+
+\subsection{Модель погрешности входного сопротивления}
+
+Модель погрешности входного сопротивления задана следующим уравнением (зависимость входного сопротивления от теоретического значения R, масштабного коэффициента a и коэффициента смещения b):
+
+\begin{equation}
+    R_{inp} = R a + b
+\end{equation}
+
+При взаимодействии, модели явлений, описанных в предыдущих разделах, приводят к модели погрешностей, приведенной в следующем разделе.
+
+
+
+\subsection{Модель погрешности}
+
+Модель погрешности измерений, полученная путём взятия градиента от модели уравнений, приведённых в прошлом разделе.
+
+\begin{equation}
+    \Delta_{U out} = - \frac{\Delta_{R} U_{inp} a k_{ind}}{\left(R a + b\right)^{2}} - \frac{\Delta_{a} R U_{inp} k_{ind}}{\left(R a + b\right)^{2}} - \frac{\Delta_{b} U_{inp} k_{ind}}{\left(R a + b\right)^{2}}
+\end{equation}
+
+
+
+
+\clearpage\thispagestyle{empty}
+
+\begin{center}
+\includegraphics[width=.4\textwidth]{qr_tmp/db_qr_0.png}\\\includegraphics[width=.4\textwidth]{qr_tmp/db_qr_1.png}\\\includegraphics[width=.4\textwidth]{qr_tmp/db_qr_2.png}\\
+\end{center}
+
+% =====================================================
+% библиография внтури текста
+%\begin{thebibliography}{9}
+%
+%\bibitem{latex_book} Leslie Lamport, \emph{\LaTeX: a document preparation system}, Addison Wesley, Massachusetts, 2nd edition, 1994.
+%
+%\bibitem{how2bib} Оформление библиографического списка [Электронный ресурс]. -- СПб.: ВШМ СПбГУ, 1993 - . -- Режим доступа : \url{http://gsom.spbu.ru/files/upload/library/list_of_literature.pdf}, свободный. Загл. с экрана
+%
+%\bibitem{laser} \url{https://ru.wikipedia.org/wiki/%D0%9B%D0%B0%D0%B7%D0%B5%D1%80%D0%BD%D1%8B%D0%B9_%D0%B4%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%BC%D0%B5%D1%80}
+%\end{thebibliography}
+
+%\phantomsection
+%\addcontentsline{toc}{section}{\bibname}	% Добавляем список литературы в оглавление
+%\renewcommand{\baselinestretch}{1.2}
+%
+%\renewcommand{\baselinestretch}{1.5}
+
+
+\end{document}

@@ -1,0 +1,84 @@
+\usepackage{anysize,epstopdf,float,caption,enumitem,longtable}              
+
+%\marginsize{left}{right}{top}{bottom}:
+\marginsize{3cm}{2cm}{2cm}{2cm}
+\usepackage{marginnote}
+
+\usepackage{tikz,circuitikz,amsmath}
+\usepackage{qrcode}
+\usetikzlibrary{arrows,shapes}
+
+\usepackage{array,multirow} % позволяет выравнивать текст в ячейках по вертикали
+
+
+\usepackage{listings} % Включение кусков кода
+\lstset{language=Python, inputencoding=cp1251, breaklines=true, frame=single, showstringspaces=false, basicstyle=\ttfamily}
+\lstset{language=HTML, inputencoding=cp1251, breaklines=true, frame=single, showstringspaces=false, basicstyle=\ttfamily}
+
+
+
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thetable}{\arabic{table}}
+\graphicspath{{./img/}}
+\usepackage{hyperref}
+\usepackage[hypcap]{caption}
+
+% Убрать коробки вокруг гиперссылок
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = red, %Colour for external hyperlinks
+  linkcolor    = red, %Colour of internal links
+  citecolor   = red %Colour of citations
+}
+
+\usepackage{subcaption}
+
+\relpenalty=9999
+\binoppenalty=9999
+
+\DeclareCaptionLabelSeparator{tb}{:\\}
+
+\usepackage{tabularx,ragged2e,booktabs,caption}
+\newcolumntype{C}[1]{>{\Centering}m{#1}}
+\renewcommand\tabularxcolumn[1]{C{#1}}
+\captionsetup[table]{justification=raggedleft,
+  singlelinecheck=false,labelsep=tb
+}
+
+%\usepackage{chngcntr}
+%\counterwithin{table}{chapter}
+%\counterwithin{figure}{chapter}
+
+\makeatletter
+  \def\thesubfigure{\textit{\asbuk{subfigure}}}
+  \providecommand\thefigsubsep{}
+  \def\p@subfigure{\@nameuse{thefigure}\thefigsubsep}
+\makeatother
+
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcommand*\rot{\rotatebox{90}}
+
+%%% Библиография %%%
+
+\usepackage{cite} % Красивые ссылки на литературу
+\makeatletter
+\bibliographystyle{bib/utf8gost705u}	% Оформляем библиографию согласно ГОСТ 7.0.5
+\renewcommand{\@biblabel}[1]{#1.}	% Заменяем библиографию с квадратных скобок на точку:
+\makeatother
+\addto{\captionsrussian}{\renewcommand{\bibname}{Список использованных источников}}
+
+
+%%% Список сокращений %%%
+\usepackage[acronym,nopostdot,nonumberlist]{glossaries}
+\makeglossaries
+
+
+\renewcommand{\glossarysection}[2][]{}
+%\setlength{\glssymbolwidth}{.1\hsize}
+%\setlength{\glsdescwidth}{15cm}
+
+
+
+
+
