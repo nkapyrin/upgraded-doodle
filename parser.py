@@ -36,27 +36,16 @@ outVar =    sp.Symbol( math_models['#INSTRUMENT_MODEL#'][0] )
 deviceEqn = sp.sympify( math_models['#INSTRUMENT_MODEL#'][1] )
 effectVar = sp.Symbol( math_models['#EFFECT_MODEL#'][0] )
 diffVars =  list( (sp.sympify( math_models['#EFFECT_MODEL#'][1] )).free_symbols )
-print 'diffVars', str(diffVars)
-
 effectEqn = sp.sympify( math_models['#EFFECT_MODEL#'][1] )
-print 'effectEqn', str(effectEqn)
-
 delta_outVar = sp.Symbol( 'Delta_' + math_models['#INSTRUMENT_MODEL#'][0] )
-print 'delta_outVar', str(delta_outVar)
-
 delta_diffVars = [ sp.Symbol( 'Delta_' + str(d) ) for d in diffVars ]
-print 'delta_diffVars', str(delta_diffVars)
-
 subsEqn = deviceEqn.subs( effectVar, effectEqn )
 diffEqn = sp.sympify( '0' )
 for s,ds in zip( diffVars,delta_diffVars):
     diffEqn = diffEqn + sp.diff(subsEqn, s) * ds
 
-#diffEqn = sp.diff( deviceEqn.subs( diffVar,effectEqn ), diffVar ) * delta_diffVar
-
 print 'diffEqn', str(diffEqn)
-
-math_models['#INSTRUMENT_ERROR_MATH#'] = [ str(delta_outVar), str(diffEqn) ]
+math_models['#INSTRUMENT_ERROR_MATH#'] = [ unicode(delta_outVar), unicode(diffEqn) ]
 
 
 math_docx = {}
