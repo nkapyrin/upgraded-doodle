@@ -12,7 +12,7 @@
 
 Для запуска скрипта рекомендуется установить Python в составе дистрибутива Anaconda (https://www.continuum.io/downloads), который кроме компилятора поставляет много нужных инструментов и библиотек функций. Дополнительные библиотеки можно установить одной командой:
 
-pip install python-docx, lxml, pillow, qrcode
+`pip install python-docx, lxml, pillow, qrcode`
 
 Чтобы сформировать отчёт, нужно поместить в одну папку 3 файла:
 
@@ -23,12 +23,12 @@ pip install python-docx, lxml, pillow, qrcode
 
 Локальный запуск программы осуществляется обычной командой
 
-@python parser_docx.py@
+`python parser_docx.py`
 
 ## LaTeX
 
 Для отчёта в LaTeX, исполняемый файл будет называться parser_latex.py.
 
-@python parser_latex.py@
+`python parser_latex.py`
 
 В системе должен быть установлен компилятор LaTeX (http://www.tug.org/texlive/), либо выходной файл result... .tex можно скомпилировать при помощи онлайн-сервиса (https://ru.sharelatex.com/).
