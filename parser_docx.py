@@ -26,8 +26,8 @@ basic_info = { u"#INSTRUMENT_NAME#":     db.find('instrument').attrib["name"], \
 # Информация из общей базы данных, зависящая от выбора задания
 general_info = { u"#INSTRUMENT_DESCRIPTION#": db.find("description[@name='%s']" % basic_info['#INSTRUMENT_NAME#']).attrib['text'], \
                  u"#EFFECT DESCRIPTION#":     db.find("description[@name='%s']" % basic_info['#EFFECT_NAME#']).attrib['text'], \
-                 u"#EFFECT_VARIABLES_AND_DESCRIPTIONS#":     db.find("model[@name='%s']" % basic_info['#EFFECT_NAME#']).attrib['desctiption'], \
-                 u"#INSTRUMENT_VARIABLES_AND_DESCRIPTIONS#": db.find("model[@name='%s']" % basic_info['#INSTRUMENT_NAME#']).attrib['desctiption'] }
+                 u"#EFFECT_VARIABLES_AND_DESCRIPTIONS#":     db.find("model[@name='%s']" % basic_info['#EFFECT_NAME#']).attrib['description'], \
+                 u"#INSTRUMENT_VARIABLES_AND_DESCRIPTIONS#": db.find("model[@name='%s']" % basic_info['#INSTRUMENT_NAME#']).attrib['description'] }
 
 math_models = { u"#INSTRUMENT_MODEL#": [s.strip() for s in db.find("model[@name='%s']" % basic_info['#INSTRUMENT_NAME#']).attrib['math'].split('=')],\
                 u"#EFFECT_MODEL#":     [s.strip() for s in db.find("model[@name='%s']" % basic_info['#EFFECT_NAME#']).attrib['math'].split('=')] }
