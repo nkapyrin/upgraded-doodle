@@ -81,12 +81,12 @@ template = template.replace( u"#QR_DUMP_HERE#", qr_txt )
 #    qr_txt = qr_txt + u"\qrcode{%s}" % s
 
 # Записать выходной файл
-filename = "tex/result_%s.tex" % basic_info['#YOUR_NAME#'].split(' ')[0]
+filename = "tex/result.tex"
 print filename
 with codecs.open( filename, "w", "utf-8") as f:
     f.write( template )
 
 import os
 os.chdir("tex")
-os.system( 'pdflatex -interaction=batchmode result_Пример.tex' ) # -synctex=1
+os.system( 'pdflatex -interaction=batchmode result.tex' ) # -synctex=1
 

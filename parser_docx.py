@@ -1,15 +1,18 @@
 #encoding:utf-8
-import docx            # pip install python-docx
+#(sudo) pip install python-docx pil qrcode lxml sympy
+import docx
 from docx.shared import Inches
-from lxml import etree # pip install lxml
+from lxml import etree
 import sympy as sp
 from sympy.printing.mathml import mathml
-from sympy.utilities.mathml import c2p
+#from sympy.utilities.mathml import c2p
 
 db = etree.parse("db.xml").getroot();
 template = docx.Document('template.docx');
-mml_xslt = etree.parse('mml2omml.xsl');
+mml_xslt = etree.parse('mml2omml.xsl');  # mml to OMML XSL
+mmlc2p_xslt = etree.parse('mmlc2p.xsl'); # content to presentation MML
 transform = etree.XSLT(mml_xslt);
+c2p_transform = etree.XSLT(mmlc2p_xslt);
 
 # Информация о задании
 basic_info = { u"#INSTRUMENT_NAME#":     db.find('instrument').attrib["name"], \
@@ -52,7 +55,16 @@ math_docx = {}
 for k in math_models.keys():
     LHS_txt,RHS_txt = math_models[k]
     LHS_mml,RHS_mml = mathml( sp.sympify(LHS_txt) ), mathml( sp.sympify(RHS_txt) )
-    mml_tree = etree.fromstring( c2p( "<apply><eq/>" + LHS_mml + RHS_mml + "</apply>" ))
+    
+    #
+    #c_mml_tree = etree.fromstring( "<apply><eq/>" + LHS_mml + RHS_mml + "</apply>" )
+    content_mml_tree = etree.fromstring(u'<math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><apply><eq/>' + LHS_mml + RHS_mml + u'</apply></math>')
+    mml_tree = c2p_transform( content_mml_tree )
+    #print LHS_txt, '=', RHS_txt
+    #mml_tree = etree.fromstring(  )
+    #mml_tree = c2p( '<math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><apply><eq/>' + LHS_mml + RHS_mml + '</apply></math>' )
+    #mml_tree = etree.fromstring( mml_tree )
+    
     omml_formula = transform( mml_tree )
     math_docx[k] = omml_formula.getroot()
 
@@ -79,7 +91,7 @@ for paragraph in template.paragraphs:
 
 template.add_page_break()
 
-import qrcode # sudo pip install pil qrcode
+import qrcode
 xml_text = etree.tostring( db, encoding='UTF-8' ).decode("utf-8")
 
 p = template.add_paragraph(); r = p.add_run();
