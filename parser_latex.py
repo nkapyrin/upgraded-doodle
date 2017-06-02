@@ -26,8 +26,8 @@ basic_info = { u"#INSTRUMENT_NAME#":     db.find('instrument').attrib["name"], \
 # Информация из общей базы данных, зависящая от выбора задания
 general_info = { u"#INSTRUMENT_DESCRIPTION#": db.find("description[@name='%s']" % basic_info['#INSTRUMENT_NAME#']).attrib['text'], \
                  u"#EFFECT DESCRIPTION#":     db.find("description[@name='%s']" % basic_info['#EFFECT_NAME#']).attrib['text'], \
-                 u"#EFFECT_VARIABLES_AND_DESCRIPTIONS#":     db.find("model[@name='%s']" % basic_info['#EFFECT_NAME#']).attrib['desctiption'], \
-                 u"#INSTRUMENT_VARIABLES_AND_DESCRIPTIONS#": db.find("model[@name='%s']" % basic_info['#INSTRUMENT_NAME#']).attrib['desctiption'] }
+                 u"#EFFECT_VARIABLES_AND_DESCRIPTIONS#":     db.find("model[@name='%s']" % basic_info['#EFFECT_NAME#']).attrib['description'], \
+                 u"#INSTRUMENT_VARIABLES_AND_DESCRIPTIONS#": db.find("model[@name='%s']" % basic_info['#INSTRUMENT_NAME#']).attrib['description'] }
 
 
 math_models = { u"#INSTRUMENT_MODEL#": [s.strip() for s in db.find("model[@name='%s']" % basic_info['#INSTRUMENT_NAME#']).attrib['math'].split('=')],\
@@ -58,7 +58,7 @@ for k in math_models.keys():
 
 # Заменить все ключевые выражения
 for d in [ basic_info, general_info ]:
-    for k in d.keys(): template = template.replace( k, d[k].replace('_','\_') )
+    for k in d.keys(): template = template.replace( k, d[k].replace('_','\_').replace(u'±',u'$\pm$').replace(u'—',u'--') )
 
 for d in [ math_latex ]:
     for k in d.keys(): template = template.replace( k, d[k] )
