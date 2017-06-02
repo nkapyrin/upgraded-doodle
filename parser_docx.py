@@ -55,16 +55,16 @@ math_docx = {}
 for k in math_models.keys():
     LHS_txt,RHS_txt = math_models[k]
     LHS_mml,RHS_mml = mathml( sp.sympify(LHS_txt) ), mathml( sp.sympify(RHS_txt) )
-    
-    #
-    #c_mml_tree = etree.fromstring( "<apply><eq/>" + LHS_mml + RHS_mml + "</apply>" )
-    content_mml_tree = etree.fromstring(u'<math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><apply><eq/>' + LHS_mml + RHS_mml + u'</apply></math>')
+
+    content_mml_tree = etree.fromstring( '<math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><apply><eq/>' + LHS_mml + RHS_mml + '</apply></math>' )
     mml_tree = c2p_transform( content_mml_tree )
-    #print LHS_txt, '=', RHS_txt
-    #mml_tree = etree.fromstring(  )
-    #mml_tree = c2p( '<math xmlns:mml="http://www.w3.org/1998/Math/MathML" overflow="scroll"><apply><eq/>' + LHS_mml + RHS_mml + '</apply></math>' )
-    #mml_tree = etree.fromstring( mml_tree )
-    
+
+    # Частая ошибка -- знак умножения заменяется невидимым умножением &#x2062;, но потом интерпретируется как набор отдельных ASCII символов
+    #for el in mml_tree.findall( '//{http://www.w3.org/1998/Math/MathML}mo' ):
+    #    if el.text!= None : el.text = el.text.replace( "&#x2062;", u"\u2062" )
+    for el in mml_tree.findall( '//{http://www.w3.org/1998/Math/MathML}mo' ):
+        if el.text != None: el.text = el.text.replace( "&#x2062;", '*' )
+
     omml_formula = transform( mml_tree )
     math_docx[k] = omml_formula.getroot()
 
