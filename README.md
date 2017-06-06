@@ -25,19 +25,19 @@
 
 ## Как скомпилировать отчёт без локальной установки?
 
-Служба [pythonanywhere](https://www.pythonanywhere.com) предоставляет файловое хранилище и возможность запускать проекта в Unix-окружении.
+Служба [pythonanywhere](https://www.pythonanywhere.com) предоставляет файловое хранилище и возможность запуска проектов в Unix-окружении.
 
-Чтобы сгенерировать отчёт, после регистрации будет необходимо:
+*Чтобы сгенерировать отчёт, после регистрации будет необходимо:*
 
 1. Открыть Bash-консоль (Start new console -> Bash)
 2. Проверить, что все зависимости установлены, либо установить: `pip install --user lxml pil qrcode sympy python-docx`
-3. Клонировать репозиторий: `git clone https://github.com/nkapyrin/upgraded-doodle` (название случайно)
+3. Клонировать репозиторий: `git clone https://github.com/nkapyrin/upgraded-doodle` _(название случайно)_
 4. Перейти в папку с проектом : `cd upgraded-doodle`
 5. Отредактировать файл с заданием
-    1. Либо при помощи `nano db.xml` (выйти из программы можно нажатием `Ctrl+X`)
-    2. Либо при помощи онлайн-редактора текстовых файлов, можно открыть xml-файл в `Files/upgraded-doodle/db.xml` и вписать свои изменения
+    1. Либо при помощи онлайн-редактора текстовых файлов, можно открыть xml-файл в `Files/upgraded-doodle/db.xml` и вписать свои изменения
+    2. Либо при помощи `nano db.xml` (выйти из программы можно нажатием `Ctrl+X`)
 6. Выполнить сборку docx-документа: `python parser_docx.py`
-7. Выполнить сборку LaTeX-документа: `python parser_docx.py` (да, сайт предоставляет работающий LaTeX-компилятор)
+7. Выполнить сборку LaTeX-документа: `python parser_docx.py` (сайт предоставляет работающий LaTeX-компилятор)
 8. С главного экрана сайта, скачать файлы `Files/upgraded-doodle/result_ВашаФамилия.docx` и/или `Files/upgraded-doodle/tex/result.pdf` и отправить их на nikolay.kapyrin@gmail.com.
 
 
